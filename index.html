@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Time Converter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+      .container { text-align: center; }
+      .form-control, .btn { margin: 10px 0; }
+      .result { font-size: 24px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Time Converter</h1>
+      <div class="form-group">
+        <label for="inputTime">Time:</label>
+        <input type="text" class="form-control" id="inputTime" placeholder="Enter value to convert">
+      </div>
+      <div class="form-group">
+        <label for="selectFrom">From:</label>
+        <select class="form-control" id="selectFrom">
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="selectTo">To:</label>
+        <select class="form-control" id="selectTo">
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="convert()">Convert</button>
+      <div class="result" id="result"></div>
+    </div>
+    <script>
+      function convert() {
+        var time = document.getElementById("inputTime").value;
+        var from = document.getElementById("selectFrom").value;
+        var to = document.getElementById("selectTo").value;
+        
+        // Convert to seconds
+        if (from === "minutes") {
+          time *= 60;
+        } else if (from === "hours") {
+          time *= 3600;
+        }
+        
+        // Convert from seconds
+        if (to === "minutes") {
+          time /= 60;
+        } else if (to === "hours") {
+          time /= 3600;
+        }
+        
+        document.getElementById("result").innerHTML = time.toFixed(2) + " " + to;
+      }
+    </script>
+  </body>
+</html>
